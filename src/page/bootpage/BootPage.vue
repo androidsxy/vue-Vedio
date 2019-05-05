@@ -6,7 +6,13 @@
       </swiper-slide>
       <div class="swiper-pagination"  v-for="(item,index) in imgas" :key="index" slot="pagination" ></div>
    </swiper>
-   <div class="buttom_bander"></div>
+   <router-link to="/homepage/">
+     <transition name="fade">
+   <div v-if="startbool" class="buttom_bander">
+     <img class="img_start" src="http://192.168.1.100/novipVedio/imges/kaishi.jpg" />
+   </div>
+     </transition>
+     </router-link>
 </div>
 </template>
 <script>
@@ -17,8 +23,9 @@ export default {
     data(){
         const that = this;
         return{
-           imgas:["http://img.zcool.cn/community/01cf105ad71277a80121386713d8d4.jpg","http://img.zcool.cn/community/012f275ad71278a8012040290fb94a.jpg","http://img.zcool.cn/community/017eec5ad71276a801204029aa0072.jpg","http://img.zcool.cn/community/016cdc5ad71277a8012040296d4916.jpg"],
+           imgas:["http://192.168.1.100/novipVedio/imges/sf01.jpg","http://192.168.1.100/novipVedio/imges/sf02.jpg","http://192.168.1.100/novipVedio/imges/sf03.jpg","http://192.168.1.100/novipVedio/imges/sf04.jpg"],
            imgIndex: 1,
+           startbool:false,
            swiperOption: {
            //是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
            notNextTick: true,
@@ -44,6 +51,7 @@ export default {
              slideChangeTransitionStart: function() {
              /* realIndex为滚动到当前的slide索引值 */
              that.imgIndex= this.realIndex - 1;
+             that.imgIndex==2?that.startbool=true:that.startbool=false;
           },
         },
         //分页器设置
@@ -62,6 +70,10 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+.fade-enter-active, .fade-leave-active
+  transition: opacity .5s;
+.fade-enter, .fade-leave-to
+  opacity: 0;
 .wrapper >>> .swiper-pagination-bullet-active
     background :#fff !important
 .wrapper
@@ -79,9 +91,11 @@ export default {
     left:0
     right:0
     bottom:1.7rem
-    border:1px solid red
     width:4.5rem
     height:.9rem 
     z-index:100
+    .img_start
+      width:100%
+      border-radius:.2rem
 </style>
 
