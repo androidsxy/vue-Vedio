@@ -24,7 +24,7 @@ export default {
         const that = this;
         return{
            buttomimg:"/novipVedio/imges/kaishi.jpg",
-           url:"http://192.168.1.101",
+           url:"http://localhost",
            imgas:["/novipVedio/imges/sf01.jpg","/novipVedio/imges/sf02.jpg","/novipVedio/imges/sf03.jpg","/novipVedio/imges/sf04.jpg"],
            imgIndex: 1,
            startbool:false,
