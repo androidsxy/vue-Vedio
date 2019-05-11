@@ -8,8 +8,8 @@ import './assets/styles/border.css'
 import './assets/styles/iconfont.css'
 
 Vue.config.productionTip = false
-
-/* eslint-disable no-new */
+Vue.prototype.HOST = '/api'
+    /* eslint-disable no-new */
 new Vue({
     el: '#app',
     router,

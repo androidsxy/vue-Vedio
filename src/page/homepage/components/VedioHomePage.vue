@@ -1,9 +1,9 @@
 <template>
-    <div class="vedio">
+    <div class="vedio" :style="itemlist.bottom">
       <div class="vedio_head">
           <div class="vedio_head_left">
-              <span class='iconfont iconfont_left'>&#xe6af;</span>
-              <span>电影</span>
+              <span class='iconfont iconfont_left' v-html="itemlist.ioon"></span>
+              <span>{{itemlist.name}}</span>
           </div>
           <div class="vedio_head_right">
               <span class="gd">更多</span>
@@ -11,20 +11,10 @@
           </div>
       </div>
       <div class="vedio_list">
-          <div class="vedio_item">
-              <img class="vedio_item_img" src="http://p3.qhimg.com/d/dy_c2961c85f1c7d6a0da60e07fe6c6c362.jpg" alt="">
+          <div class="vedio_item" @click="jump(item.playurl1)" v-for="(item,index) in dylist" :key="index">
+              <img class="vedio_item_img" :src="item.zimg1" alt="">
               <span class="vedio_item_span">豆瓣分9.5</span>
-              <p>ABCD</p>
-           </div>
-           <div class="vedio_item">
-              <img class="vedio_item_img" src="http://p3.qhimg.com/d/dy_c2961c85f1c7d6a0da60e07fe6c6c362.jpg" alt="">
-              <span class="vedio_item_span">豆瓣分8.0</span>
-              <p>ABCD</p>
-           </div>
-           <div class="vedio_item">
-              <img class="vedio_item_img" src="http://p3.qhimg.com/d/dy_c2961c85f1c7d6a0da60e07fe6c6c362.jpg" alt="">
-              <span class="vedio_item_span" >豆瓣分7.5</span>
-              <p>ABCD</p>
+              <p class="vedio_item_p">{{item.zname1}}</p>
            </div>
       </div>
     </div>
@@ -32,15 +22,30 @@
 
 <script>
 export default {
-    name:"VedioHomePage"
+    name:"VedioHomePage",
+    props:{
+      itemlist:Object,
+      dylist:Array
+    },
+        methods:{
+             jump:function(url){
+            //  console.log(url.split("?"));
+             this.$router.push({
+               name:'PalyPage',
+               params:{
+                 url:url
+               }
+             });
+            },
+        }
 }
 </script>
 
 <style lang="stylus" scoped>
   .vedio
-    margin-top:.5rem
     width:100%
     text-align:center
+    display: inline-block;
     .vedio_head
       position:relative
       margin-top:.2rem
@@ -72,19 +77,26 @@ export default {
       .vedio_item
         position:relative
         float:left
-        width:29.5%
-        margin-left:.21rem
+        width:28.5%
+        height:3.7rem
+        padding:0 .16rem 
+        overflow: hidden
+        margin-bottom:.3rem
         .vedio_item_img
-          width:100%
+          width:auto
+          height:85%
+        .vedio_item_p
+          margin-top:.2rem
         .vedio_item_span
           position:absolute
-          top:.2rem
-          left:-0.1rem
+          top:.15rem
+          left:0.08rem
           z-index:100
           background:#204060
           color:#fff
           padding:0.1rem 0.1rem
           font-size:0.2rem
+          z-index:10
 
 </style>
 

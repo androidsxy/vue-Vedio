@@ -2,14 +2,14 @@
 <div class='wrapper'>
    <swiper :options="swiperOption" class="swiper-wrap"  ref="mySwiper" v-if="imgas.length!=0">
       <swiper-slide v-for="(item,index) in imgas" :key="index"> 
-          <img class="img_bander" :src="item" alt="" />
+          <img class="img_bander" :src="url+item" alt="" />
       </swiper-slide>
       <div class="swiper-pagination"  v-for="(item,index) in imgas" :key="index" slot="pagination" ></div>
    </swiper>
    <router-link to="/homepage/">
      <transition name="fade">
    <div v-if="startbool" class="buttom_bander">
-     <img class="img_start" src="http://192.168.1.100/novipVedio/imges/kaishi.jpg" />
+     <img class="img_start" :src="url+buttomimg" />
    </div>
      </transition>
      </router-link>
@@ -23,7 +23,9 @@ export default {
     data(){
         const that = this;
         return{
-           imgas:["http://192.168.1.100/novipVedio/imges/sf01.jpg","http://192.168.1.100/novipVedio/imges/sf02.jpg","http://192.168.1.100/novipVedio/imges/sf03.jpg","http://192.168.1.100/novipVedio/imges/sf04.jpg"],
+           buttomimg:"/novipVedio/imges/kaishi.jpg",
+           url:"http://192.168.1.101",
+           imgas:["/novipVedio/imges/sf01.jpg","/novipVedio/imges/sf02.jpg","/novipVedio/imges/sf03.jpg","/novipVedio/imges/sf04.jpg"],
            imgIndex: 1,
            startbool:false,
            swiperOption: {
